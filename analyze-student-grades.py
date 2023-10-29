@@ -4,6 +4,8 @@
 
 import pandas as pd
 
+# Function for using a student's final grade
+# to determine their letter grade
 def assign_letter_grade(final_grade):
     if final_grade > 90:
         return 'A+' 
@@ -18,6 +20,7 @@ def assign_letter_grade(final_grade):
     else:
         return 'F'
 
+# Load student/grade data from CSV file into a dataframe
 file_name = "Grades_Short.csv"
 df_grades = pd.read_csv(file_name, header=0)
 
@@ -41,7 +44,10 @@ df_grades['Final_Grade'] = round((
     df_grades['Final_Exam'] * 0.4             
 ),1)
 
-# Add column for letter grade
+# Add column for letter grade and apply function
+# for determining the letter grade
 df_grades['Letter_Grade'] = df_grades['Final_Grade'].apply(assign_letter_grade)
 
-df_grades.to_csv("Grades_Short_New.csv", index=False)
+# Write dataframe with added columns to a new CSV file
+new_file_name = "Grades_Short_New.csv"
+df_grades.to_csv(new_file_name, index=False)
