@@ -21,11 +21,11 @@ def assign_letter_grade(final_grade):
         return 'F'
 
 # Load student/grade data from CSV file into a dataframe
-file_name = "Grades_Short.csv"
+file_name = 'Grades_Short.csv'
 df_grades = pd.read_csv(file_name, header=0)
 
 # Add columns for average quiz grade and average assignment grade
-grade_types = ["Quiz", "Assignment"]
+grade_types = ['Quiz', 'Assignment']
 for grade_type in grade_types:
     df_grades[grade_type+'_Average'] = (
         df_grades[grade_type+'_1'] + 
@@ -49,5 +49,5 @@ df_grades['Final_Grade'] = round((
 df_grades['Letter_Grade'] = df_grades['Final_Grade'].apply(assign_letter_grade)
 
 # Write dataframe with added columns to a new CSV file
-new_file_name = "Grades_Short_New.csv"
+new_file_name = 'Grades_Short_New.csv'
 df_grades.to_csv(new_file_name, index=False)
